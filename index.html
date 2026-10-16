@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Ýyldyz Kafe</title>
+<style>
+:root{--g:#b4573a;--gd:#8a3f29;--gl:#c9886c;--bg:#fffaf3;--soft:#f6ece0;--text:#7a3a25;--ink:#2b1d17;--or:#d9a441;color-scheme:light;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--bg:#241915;--soft:#34251f;--text:#f0c4ae;--ink:#f7ebe2;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#241915;--soft:#34251f;--text:#f0c4ae;--ink:#f7ebe2;color-scheme:dark}
+*{box-sizing:border-box;margin:0;-webkit-tap-highlight-color:transparent}
+html,body{min-height:100%}
+body{font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color:var(--ink);background:#3b2a22 linear-gradient(160deg,#6b4a3a,#2e1f19 55%,#a77c5a);background-attachment:fixed;max-width:520px;margin:0 auto}
+button{font:inherit;border:0;cursor:pointer}
+.logo{font:900 76px/1 'Arial Black',system-ui,sans-serif;color:var(--g);text-align:center;-webkit-text-stroke:10px #fff;paint-order:stroke fill;letter-spacing:-2px;padding:0 10px}
+.logo small{display:block;font-size:30px;-webkit-text-stroke:6px #fff;margin-top:6px}
+.screen{min-height:100vh;display:flex;flex-direction:column;justify-content:center;gap:34px;padding:30px 20px}
+.panel{background:var(--gl);border-radius:30px;padding:12px;display:grid;gap:10px}
+.panel h3{background:var(--gd);color:#fff;text-align:center;padding:14px;border-radius:99px;font-size:16px;font-weight:500}
+.pill{background:#fff;color:var(--gd);font-size:22px;font-weight:700;padding:20px;border-radius:99px;text-align:center}
+.hint{color:#fff;text-align:center;font-size:15px}
+.contacts{margin:0 16px 30px;background:rgba(138,63,41,.9);color:#fff;border-radius:30px;padding:26px 20px;text-align:center;display:grid;gap:18px}
+.contacts h2{font-size:30px}.contacts span{opacity:.8;font-size:18px}.contacts b{display:block;font-size:22px;margin-top:4px}
+.map{background:#f3e3d4;border-radius:22px;height:170px;display:grid;place-items:center;color:#8a3f29;font-size:15px;padding:10px}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);display:flex;align-items:center;justify-content:space-between;padding:14px 16px}
+.bar h1{font-size:26px;color:var(--g)}
+.sq{width:56px;height:56px;border-radius:18px;background:var(--g);color:#fff;font-size:26px;display:grid;place-items:center}
+.tabs{position:sticky;top:calc(84px + env(safe-area-inset-top,0px));z-index:4;background:var(--bg);display:flex;gap:10px;overflow-x:auto;padding:4px 16px 14px;border-bottom:1px solid var(--soft)}
+.tabs button{white-space:nowrap;background:var(--soft);color:var(--g);padding:14px 22px;border-radius:99px;font-size:17px;text-transform:uppercase}
+.tabs button.on{background:var(--g);color:#fff}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;padding:16px 16px 130px}
+.card{background:#fff;border:5px solid #fff;border-radius:28px;overflow:hidden;display:flex;flex-direction:column;gap:6px}
+.pic{aspect-ratio:1;border-radius:22px;display:grid;place-items:center;font-size:72px;background-size:cover;background-position:center}
+.cat .lbl{background:var(--g);color:#fff;text-align:center;padding:14px 4px;border-radius:20px;font-size:19px;text-transform:uppercase;margin-top:2px}
+.nm{background:var(--soft);border-radius:18px;padding:12px;color:var(--text);flex:1;text-transform:uppercase;font-size:15px}
+.nm b{display:block;font-size:24px;font-weight:500;margin-top:4px;text-transform:none}
+.add{background:var(--g);color:#fff;padding:16px;border-radius:20px;font-size:18px}
+h2.sec{color:var(--g);font-size:32px;padding:14px 16px 0;text-transform:uppercase}
+.foot{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(520px,100%);background:var(--bg);display:flex;justify-content:space-between;align-items:center;padding:18px 24px calc(18px + env(safe-area-inset-bottom,0px));color:var(--g);font-size:18px;z-index:6}
+.foot button{background:none;color:var(--g);font-size:18px}
+.call{position:fixed;right:max(16px,calc(50% - 244px));bottom:calc(96px + env(safe-area-inset-bottom,0px));width:58px;height:58px;border-radius:50%;background:var(--or);color:#fff;font-size:26px;z-index:7;box-shadow:0 4px 14px rgba(0,0,0,.3)}
+.cart{background:var(--bg);min-height:100vh;padding:16px 16px 190px}
+.crow{display:grid;grid-template-columns:132px 1fr;gap:6px;margin-top:20px}
+.crow .pic{grid-row:span 2;font-size:48px;border-radius:24px;aspect-ratio:auto}
+.crow .nm{flex:none}
+.qty{display:grid;grid-template-columns:54px 1fr 54px;align-items:center;text-align:center;background:var(--soft);border-radius:20px;color:var(--text);font-size:19px;font-weight:600}
+.qty button{background:none;color:var(--g);font-size:30px;height:54px}
+.total{position:fixed;left:50%;transform:translateX(-50%);bottom:0;width:min(520px,100%);padding:0 16px calc(16px + env(safe-area-inset-bottom,0px));display:grid;gap:12px;background:var(--bg)}
+.total div,.total button{background:var(--soft);border-radius:22px;padding:22px;font-size:22px;color:var(--text);display:flex;justify-content:space-between}
+.total button{justify-content:center}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.45);z-index:20;display:flex;align-items:flex-end;justify-content:center;padding:16px}
+.modal>div{background:var(--bg);border-radius:28px;padding:14px;width:min(520px,100%);display:grid;gap:14px}
+.mrow{background:var(--soft);border-radius:22px;padding:16px;display:flex;justify-content:space-between;align-items:center;font-size:30px;color:var(--ink)}
+.mrow small{display:block;font-size:17px}
+.mrow a{background:var(--g);color:#fff;text-decoration:none;font-size:20px;padding:14px 22px;border-radius:99px}
+.modal .cl{background:var(--g);color:#fff;padding:20px;border-radius:99px;font-size:22px}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script>
+// ---- EDIT HERE: contact info, menu, prices ----
+var INFO={phone:"00-00-00",insta:"yyldyz_cafe",tiktok:"@yyldyzcafe"};
+var CATS=[
+["br","🍳","#ffe0b0,#e8a85a",{en:"Breakfasts",ru:"Завтраки",tk:"Ertirlikler"}],
+["sa","🥪","#f5d9a8,#d79a52",{en:"Sandwiches",ru:"Сэндвичи",tk:"Sandwiçler"}],
+["sn","🍢","#f2cfa0,#c98a4a",{en:"Snacks",ru:"Закуски",tk:"Zakuskalar"}],
+["sl","🥗","#d3ebb0,#86bd5a",{en:"Salads",ru:"Салаты",tk:"Salatlar"}],
+["so","🍲","#ffe9a0,#f0b84a",{en:"Soups",ru:"Супы",tk:"Çorbalar"}],
+["ho","🍛","#e8b890,#a8602e",{en:"Hot dishes",ru:"Горячие блюда",tk:"Ysy tagamlar"}],
+["de","🍰","#f0d0c0,#c88868",{en:"Desserts",ru:"Десерты",tk:"Süýjülikler"}],
+["dr","🍹","#ffd6a0,#f08a50",{en:"Drinks",ru:"Напитки",tk:"Içgiler"}]];
+// [id, category, name, price (man), optional photo URL/data URI]
+var ITEMS=[
+[1,"br","Sample Breakfast Set",85],[2,"br","Omelette Plate",45],
+[3,"sa","Tuna Sandwich",60],[4,"sa","Chicken Sandwich",55],
+[5,"sn","Buffalo Wings",75],[6,"sn","Cigar Borek",55],[7,"sn","Chicken Pancakes",50],[8,"sn","Pan-fried Piece",55],
+[9,"sl","Greek Salad",45],[10,"sl","Shrimp Salad",155],[11,"sl","Thai Salad",75],[12,"sl","Georgian Salad",50],
+[13,"so","Cream Soup",35],[14,"so","Lentil Soup",30],
+[15,"ho","Roasted Meat & Potato",120],[16,"ho","Grilled Steak",180],
+[17,"de","Chocolate Cake",40],[18,"de","Ice Cream",25],
+[19,"dr","Fresh Lemonade",20],[20,"dr","Coffee",18]];
+// ------------------------------------------------
+var T={
+en:{pick:"Choose language",contacts:"Contacts",cats:"Categories",meals:"Meals",add:"Add to cart",empty:"Your cart is empty",show:"Show cart",total:"Total",exit:"Exit the cart",por:"portion",call:"Call",close:"Close",phone:"Phone number 1",cur:"man",items:"items"},
+ru:{pick:"Выберите язык",contacts:"Контакты",cats:"Категории",meals:"Блюда",add:"В корзину",empty:"Корзина пуста",show:"Показать корзину",total:"Итого",exit:"Выйти из корзины",por:"порция",call:"Позвонить",close:"Закрыть",phone:"Телефон 1",cur:"ман",items:"поз."},
+tk:{pick:"Dil saýlaň",contacts:"Habarlaşmak",cats:"Kategoriýalar",meals:"Tagamlar",add:"Sebede goş",empty:"Sebet boş",show:"Sebedi görkez",total:"Jemi",exit:"Sebetden çyk",por:"porsiýa",call:"Jaň et",close:"Ýap",phone:"Telefon 1",cur:"man",items:"sany"}};
+var S={lang:"en",view:"lang",cat:"sn",cart:{},modal:false};
+try{var sv=JSON.parse(localStorage.getItem("yy")||"{}");if(sv.lang)S.lang=sv.lang;if(sv.cart)S.cart=sv.cart}catch(e){}
+function save(){try{localStorage.setItem("yy",JSON.stringify({lang:S.lang,cart:S.cart}))}catch(e){}}
+function t(k){return T[S.lang][k]}
+function money(n){return n+" "+t("cur")}
+function item(id){return ITEMS.filter(function(x){return x[0]==id})[0]}
+function pic(x,cls){var c=CATS.filter(function(k){return k[0]==x[1]})[0];
+ return '<div class="pic '+(cls||'')+'" style="background-image:'+(x[4]?'url('+x[4]+')':'linear-gradient(135deg,'+c[2]+')')+'">'+(x[4]?'':c[1])+'</div>'}
+function count(){var n=0,s=0;for(var id in S.cart){n+=S.cart[id];s+=S.cart[id]*item(id)[3]}return[n,s]}
+function bar(title,back){return '<div class="bar"><button class="sq" data-a="go" data-v="'+back+'">←</button><h1>'+title+'</h1><button class="sq" data-a="go" data-v="lang">🌐</button></div>'}
+function callBtn(){return '<button class="call" data-a="modal">📞</button>'}
+function render(){
+ var y=window.scrollY,h="",a=document.getElementById("app");
+ if(S.view=="lang"){
+  h='<div class="screen"><div class="logo">Ýyldyz<small>Kafe</small></div><div class="panel"><h3>'+T[S.lang].pick+'</h3>'+
+  '<button class="pill" data-a="lang" data-v="tk">Türkmen</button><button class="pill" data-a="lang" data-v="ru">Русский</button><button class="pill" data-a="lang" data-v="en">English</button></div>'+
+  '<div class="hint">'+t("contacts")+'<br>⌄</div></div>'+
+  '<div class="contacts"><h2>'+t("contacts")+'</h2><div><span>Instagram</span><b>'+INFO.insta+'</b></div><div><span>Tik-Tok</span><b>'+INFO.tiktok+'</b></div><div><span>Phone</span><b>'+INFO.phone+'</b></div><div class="map">📍 Map goes here<br>(add your address)</div></div>';
+ }else if(S.view=="home"){
+  h=bar(t("cats"),"lang")+'<div class="grid">'+CATS.map(function(c){return '<button class="card cat" data-a="cat" data-v="'+c[0]+'">'+pic([0,c[0]],"")+'<div class="lbl">'+c[3][S.lang]+'</div></button>'}).join("")+'</div>'+callBtn();
+ }else if(S.view=="meals"){
+  var cc=count(),cn=CATS.filter(function(c){return c[0]==S.cat})[0];
+  h=bar(t("meals"),"home")+'<div class="tabs">'+CATS.map(function(c){return '<button class="'+(c[0]==S.cat?"on":"")+'" data-a="tab" data-v="'+c[0]+'">'+c[3][S.lang]+'</button>'}).join("")+'</div>'+
+  '<h2 class="sec">'+cn[3][S.lang]+'</h2><div class="grid">'+ITEMS.filter(function(x){return x[1]==S.cat}).map(function(x){
+   return '<div class="card">'+pic(x)+'<div class="nm">'+x[2]+'<b>'+money(x[3])+'</b></div><button class="add" data-a="add" data-v="'+x[0]+'">'+t("add")+'</button></div>'}).join("")+'</div>'+
+  '<div class="foot"><span>'+(cc[0]?"🛒 "+cc[0]+" "+t("items")+" · "+money(cc[1]):"🍽️ "+t("empty"))+'</span><button data-a="go" data-v="cart">'+t("show")+' →</button></div>'+callBtn();
+ }else{
+  var cc2=count();
+  h='<div class="cart"><div style="display:flex;justify-content:flex-end;gap:12px"><button class="sq" data-a="clear">🗑</button><button class="sq" data-a="go" data-v="lang">🌐</button></div>'+
+  Object.keys(S.cart).map(function(id){var x=item(id);return '<div class="crow">'+pic(x)+'<div class="nm">'+x[2]+'<b>'+money(x[3])+'</b></div><div class="qty"><button data-a="dec" data-v="'+id+'">−</button><span>'+S.cart[id]+' '+t("por")+'</span><button data-a="add" data-v="'+id+'">+</button></div></div>'}).join("")+'</div>'+
+  '<div class="total"><div><span>'+t("total")+'</span><b>'+money(cc2[1])+'</b></div><button data-a="go" data-v="meals">← '+t("exit")+'</button></div>'+callBtn();
+ }
+ if(S.modal)h+='<div class="modal"><div><div class="mrow"><span><small>'+t("phone")+'</small>'+INFO.phone+'</span><a href="tel:'+INFO.phone.replace(/[^0-9+]/g,"")+'">📞 '+t("call")+'</a></div><button class="cl" data-a="modal">'+t("close")+'</button></div></div>';
+ a.innerHTML=h;window.scrollTo(0,y);
+}
+document.addEventListener("click",function(e){
+ var b=e.target.closest("[data-a]");if(!b)return;var a=b.dataset.a,v=b.dataset.v,top=false;
+ if(a=="lang"){S.lang=v;S.view="home";top=true;document.documentElement.lang=v==="tk"?"tk":v}
+ else if(a=="go"){S.view=v;top=true}
+ else if(a=="cat"){S.cat=v;S.view="meals";top=true}
+ else if(a=="tab"){S.cat=v;top=true}
+ else if(a=="add"){S.cart[v]=(S.cart[v]||0)+1}
+ else if(a=="dec"){S.cart[v]--;if(S.cart[v]<1)delete S.cart[v]}
+ else if(a=="clear"){S.cart={}}
+ else if(a=="modal"){S.modal=!S.modal}
+ save();render();if(top)window.scrollTo(0,0);
+});
+render();
+</script>
+</body>
+</html>
